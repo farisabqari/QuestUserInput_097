@@ -57,16 +57,17 @@ fun MainScren(
             placeholder = { Text(text =  "Masukan Nama")
             }, modifier = Modifier.fillMaxWidth().padding(5.dp))
 
-        Row (){
+        Row {
             jenisKelamin.forEach { item ->
-                Row (verticalAlignment = Alignment.CenterVertically){ RadioButton(
-                    selected = selectedGender == item,
-                    onClick = {
-                        selectedGender = item
-                    }
-                )}
-                Text(item)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
 
+                    ) {
+                    RadioButton(selected = selectedGender==item, onClick = {
+                        selectedGender = item
+                    })
+                    Text(text = item)
+                }
             }
         }
 
@@ -97,7 +98,7 @@ fun MainScren(
 
         Card(modifier.size(height = 250.dp, width = 300.dp) ) {
             CardSection(judulParan = "Nama", isiParan = namaUser)
-            //CardSection(judulParan = "Jenis Kelamin", isiParan = jenisKelamin)
+            CardSection(judulParan = "Jenis Kelamin", isiParan = selectedGenderUser)
             CardSection(judulParan = "Email", isiParan = emailUser)
             CardSection(judulParan = "Alamat", isiParan = noHPUser)
 
@@ -113,7 +114,7 @@ fun CardSection(judulParan:String, isiParan:String) {
         modifier = Modifier.padding(8.dp)
     ) {
         Row(
-            modifier = Modifier.fillMaxSize().padding(8.dp),
+            modifier = Modifier.fillMaxWidth().padding(8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = judulParan, modifier = Modifier.weight(0.8f))
